@@ -57,15 +57,15 @@ def login():
         # 사용자 검증
         user = User.query.filter_by(username=userid, password=password).first()
         if user:
-            return redirect(url_for('success'))
+            return redirect(url_for('index'))
         else:
             message = '잘못된 사용자 이름 또는 비밀번호입니다.'
 
     return render_template('login.html', message=message)
 
-@app.route('/success')
-def success():
-    return '로그인 성공!'
+# @app.route('/success')
+# def success():
+#     return '로그인 성공!'
 
 if __name__ == "__main__":
     app.run(debug=True)
