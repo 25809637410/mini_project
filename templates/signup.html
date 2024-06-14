@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>회원가입</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f8f9fa;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      justify-content: center;
+      align-items: space-between;
+      height: 100vh;
+    }
+
+    .container {
+      background-color: #fff5e6;
+      border-radius: 8px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      padding: 40px;
+      width: 400px;
+      max-width: 90%;
+    }
+
+    .navbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background-color: #ffcccb;
+      padding: 20px;
+      border-radius: 8px 8px 0 0;
+    }
+
+    .navbar span {
+      font-size: 1.5rem;
+    }
+
+    .navbar a {
+      color: #333;
+      text-decoration: none;
+      font-weight: bold;
+    }
+
+    .form-group {
+      margin-bottom: 20px;
+    }
+
+    .form-group label {
+      display: block;
+      font-weight: bold;
+      margin-bottom: 5px;
+    }
+
+    .form-group input[type="text"],
+    .form-group input[type="password"] {
+      width: 100%;
+      padding: 10px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      font-size: 1rem;
+    }
+
+    .form-group button {
+      width: 100%;
+      padding: 10px;
+      border: none;
+      border-radius: 5px;
+      font-size: 1rem;
+      cursor: pointer;
+      background-color: #ffcccb;
+      color: #333;
+      transition: background-color 0.3s ease;
+    }
+
+    .form-group button:hover {
+      background-color: #ffa5a5;
+    }
+
+    .form-group input[type="submit"] {
+      background-color: #ff5a5f;
+      color: #fff5e6;
+    }
+
+    .form-group input[type="submit"]:hover {
+      background-color: #e63946;
+    }
+
+    .form-group .alert {
+      margin-top: 10px;
+      font-size: 0.9rem;
+      color: #e63946;
+    }
+
+    h2 {
+      margin-bottom: 20px;
+      font-size: 2rem;
+      color: #333;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="container">
+    <nav class="navbar"> <span> 🍚얌얌쩝쩝🍜</span> <a href="#" id="loginLink">로그인</a> </nav>
+    <h2>회원가입</h2>
+    <form action="/signup" method="POST">
+      <div class="form-group"> <label for="username">사용자 이름:</label> <input type="text" id="username" name="username"
+          required> </div>
+      <div class="form-group"> <label for="id">아이디:</label> <input type="text" id="id" name="id" required> <button
+          type="button" id="checkDuplicate">중복 확인</button> </div>
+      <div class="form-group"> <label for="password">비밀번호:</label> <input type="password" id="password" name="password"
+          required> </div>
+      <div class="form-group"> <label for="confirm_password">비밀번호 확인:</label> <input type="password"
+          id="confirm_password" name="confirm_password" required> </div>
+      <div class="form-group"> <input type="submit" id="submitBtn" value="가입"> </div>
+    </form>
+  </div>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script>
+    $(document).ready(function () {
+      $('#checkDuplicate').click(function () {
+        var id = $('#id').val();
+        console.log(id); // 아이디 중복 확인을 위한 AJAX 요청                 
+        $.ajax({
+          url: '/check_id_duplicate',
+          type: 'POST',
+          data: {
+            id: id
+          },
+          success: function (response) {
+            if (response.exists) {
+              alert('사용 중인 아이디입니다.');
+            } else {
+              alert('사용 가능한 아이디입니다.');
+            }
+          }
+        });
+      });
+      $('#loginLink').click(function () {
+        window.location.href = '/login'; // 로그인 페이지 URL로 이동             
+      });
+      // 회원가입 버튼 클릭 시 입력값이 있는지 확인 후 알림창 표시             
+      $('#submitBtn').click(function () {
+        var id = $('#id').val();
+        var password = $('#password').val();
+        var confirm_password = $('#confirm_password').val();
+        if (id === '' || password === '' || confirm_password === '') {
+          alert('모든 항목을 입력해주세요.');
+        } else {
+          alert('회원가입이 완료되었습니다. 이제 로그인할 수 있습니다.');
+        }
+      });
+    });
+  </script>
+</body>
+
+</html>

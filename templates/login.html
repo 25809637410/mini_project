@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>login page</title>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;700&display=swap" rel="stylesheet">
+  <!-- <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"> -->
+
+
+  <style>
+    * {
+      font-family: 'Noto Sans KR', sans-serif;
+
+    }
+
+    header {
+      background-color: #ffcccb;
+      color: #222;
+      padding: 10px 0;
+      text-align: center;
+    }
+
+    nav {
+      display: flex;
+      justify-content: end;
+      margin-top: 10px;
+    }
+
+    nav a {
+      color: #fff;
+      text-decoration: none;
+      padding: 10px 20px;
+      margin: 0 10px;
+      border-radius: 5px;
+    }
+
+    nav a:hover {
+      color: #777;
+    }
+
+    .login-container {
+      width: 300px;
+      margin: 20px auto;
+      padding: 20px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      background-color: #f9f9f9;
+      /* background-color: #fff5e6; */
+    }
+
+    .login-container h2 {
+      text-align: center;
+    }
+
+
+    .login-form input[type="text"],
+    .login-form input[type="password"] {
+      width: 100%;
+      padding: 10px;
+      margin: 8px 0;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      box-sizing: border-box;
+    }
+
+    .login-form input[type="submit"] {
+      width: 100%;
+      margin: 25px 0 10px;
+      padding: 9px;
+      font-size: 16px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      box-sizing: border-box;
+      background-color: #ccc;
+      color: #222;
+      border: none;
+      cursor: pointer;
+    }
+
+    .login-form input[type="submit"]:hover {
+      background-color: #ffcccb;
+    }
+
+    .button-container {
+      display: flex;
+      justify-content: space-between;
+      margin-top: 20px;
+      padding: 20px 0 30px;
+    }
+
+    .button-container a {
+      text-decoration: none;
+      background-color: #888;
+      color: #fff;
+      padding: 5px 10px;
+      border-radius: 5px;
+    }
+  </style>
+</head>
+
+<body>
+  <header>
+    <h1>🍚 얌얌쩝쩝 🍜</h1>
+    <nav>
+      <a href="/">홈</a>
+      <a href="#">추천</a>
+      <a href="/templates/login.html">로그인</a>
+      <a href="/templates/signup.html">회원가입</a>
+    </nav>
+  </header>
+
+  <div class="login-container">
+    <div class="login-form">
+      <h2>로그인</h2>
+      <!-- 모달 창
+      <div class="modal" id="loginErrorModal">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title">Login Failed</h5>
+              <button type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>
+            <div class="modal-body">
+              <p id="loginErrorMessage">{{ message }}</p>
+            </div>
+          </div>
+        </div>
+      </div> -->
+      <form action="/login" method="post">
+        <label for="userid">아이디:</label>
+        <input type="text" id="userid" name="userid" required>
+        <label for="password">비밀번호:</label>
+        <input type="password" id="password" name="password" required>
+        <input type="submit" value="로그인">
+      </form>
+      <div class="button-container">
+        <a href="/signup">회원가입</a>
+        <a href="/">홈으로 돌아가기</a>
+      </div>
+    </div>
+  </div>
+
+</body>
+
+</html>
